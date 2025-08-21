@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme } from "../contexts/ThemeContext";
-import "./DarkModeToggle.css";
+import "../styles/DarkModeToggle.css";
 
 const DarkModeToggle = ({ className = "" }) => {
     const { isDarkMode, toggleTheme } = useTheme();
