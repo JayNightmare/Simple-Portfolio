@@ -1,0 +1,180 @@
+.personal-info {
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+:root.dark-theme .personal-info {
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+}
+
+.personal-info-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.profile-image-container {
+    position: relative;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+}
+
+.profile-details {
+    text-align: left;
+    max-width: 500px;
+}
+
+.profile-details h1 {
+    font-size: 3rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: 700;
+    background: linear-gradient(45deg, #fff, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.profile-details h2 {
+    font-size: 1.5rem;
+    margin: 0 0 1rem 0;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.bio {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.stats {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.stat strong {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.location {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin: 0;
+}
+
+.social-links {
+    margin-top: 2rem;
+}
+
+.social-links h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.social-cards {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.social-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    min-width: 120px;
+}
+
+.social-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.social-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.social-name {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .personal-info {
+        padding: 2rem 1rem;
+    }
+
+    .profile-section {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .profile-details {
+        text-align: center;
+    }
+
+    .profile-details h1 {
+        font-size: 2.5rem;
+    }
+
+    .stats {
+        justify-content: center;
+    }
+
+    .social-cards {
+        gap: 1rem;
+    }
+
+    .social-card {
+        min-width: 100px;
+        padding: 1rem;
+    }
+}
