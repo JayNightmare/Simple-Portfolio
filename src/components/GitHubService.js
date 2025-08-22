@@ -11,6 +11,26 @@ class GitHubService {
         this.CACHE_DURATION = 30 * 60 * 1000; // 30 minutes
     }
 
+    setupAuthentication() {
+        const token = process.env.REACT_APP_GITHUB_TOKEN;
+        if (token) {
+            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        }
+    }
+
+    getAuthHeaders() {
+        const token = process.env.REACT_APP_GITHUB_TOKEN;
+        if (token) {
+            return {
+                Authorization: `Bearer ${token}`,
+                Accept: "application/vnd.github.v3+json",
+            };
+        }
+        return {
+            Accept: "application/vnd.github.v3+json",
+        };
+    }
+
     isCacheValid() {
         return (
             this.cache.timestamp &&
@@ -25,7 +45,8 @@ class GitHubService {
 
         try {
             const response = await axios.get(
-                "https://api.github.com/users/JayNightmare"
+                "https://api.github.com/users/JayNightmare",
+                { headers: this.getAuthHeaders() }
             );
             this.cache.user = response.data;
             this.cache.timestamp = Date.now();
@@ -44,13 +65,16 @@ class GitHubService {
         try {
             const [userRepos, nexusRepos, augmentedRepos] = await Promise.all([
                 axios.get(
-                    "https://api.github.com/users/JayNightmare/repos?per_page=100"
+                    "https://api.github.com/users/JayNightmare/repos?per_page=100",
+                    { headers: this.getAuthHeaders() }
                 ),
                 axios.get(
-                    "https://api.github.com/orgs/Nexus-Scripture/repos?per_page=100"
+                    "https://api.github.com/orgs/Nexus-Scripture/repos?per_page=100",
+                    { headers: this.getAuthHeaders() }
                 ),
                 axios.get(
-                    "https://api.github.com/orgs/Augmented-Perception/repos?per_page=100"
+                    "https://api.github.com/orgs/Augmented-Perception/repos?per_page=100",
+                    { headers: this.getAuthHeaders() }
                 ),
             ]);
 
@@ -87,7 +111,8 @@ class GitHubService {
 
         try {
             const response = await axios.get(
-                "https://api.github.com/users/JayNightmare/orgs"
+                "https://api.github.com/users/JayNightmare/orgs",
+                { headers: this.getAuthHeaders() }
             );
             this.cache.orgs = response.data;
             this.cache.timestamp = Date.now();
@@ -116,6 +141,68 @@ class GitHubService {
         return repos
             .filter((repo) => repo.stargazers_count > 0 || repo.description)
             .slice(0, count);
+    }
+
+    async fetchRepositoryDetails(owner, repo) {
+        try {
+            const [repoDetails, readmeContent, languages, contributors] =
+                await Promise.all([
+                    axios.get(`https://api.github.com/repos/${owner}/${repo}`, {
+                        headers: this.getAuthHeaders(),
+                    }),
+                    this.fetchReadmeContent(owner, repo),
+                    axios.get(
+                        `https://api.github.com/repos/${owner}/${repo}/languages`,
+                        { headers: this.getAuthHeaders() }
+                    ),
+                    axios.get(
+                        `https://api.github.com/repos/${owner}/${repo}/contributors?per_page=5`,
+                        { headers: this.getAuthHeaders() }
+                    ),
+                ]);
+
+            return {
+                details: repoDetails.data,
+                readme: readmeContent,
+                languages: languages.data,
+                contributors: contributors.data,
+            };
+        } catch (error) {
+            console.error("Error fetching repository details:", error);
+            return null;
+        }
+    }
+
+    async fetchReadmeContent(owner, repo) {
+        try {
+            // First try to get README.md
+            const response = await axios.get(
+                `https://api.github.com/repos/${owner}/${repo}/readme`,
+                {
+                    headers: {
+                        ...this.getAuthHeaders(),
+                        Accept: "application/vnd.github.v3.raw",
+                    },
+                }
+            );
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching README:", error);
+            return null;
+        }
+    }
+
+    async fetchRepositoryCommits(owner, repo, count = 5) {
+        try {
+            const response = await axios.get(
+                `https://api.github.com/repos/${owner}/${repo}/commits?per_page=${count}`,
+                { headers: this.getAuthHeaders() }
+            );
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching commits:", error);
+            return [];
+        }
     }
 }
 

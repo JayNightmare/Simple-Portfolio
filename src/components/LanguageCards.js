@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import RepositoryModal from "./RepositoryModal";
 import "../styles/LanguageCards.css";
 
 const LanguageCards = ({ languageGroups }) => {
+    const [selectedRepository, setSelectedRepository] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleRepositoryClick = (repository) => {
+        setSelectedRepository(repository);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedRepository(null);
+    };
     const getLanguageColor = (language) => {
         const colors = {
             JavaScript: "#f7df1e",
@@ -68,7 +81,7 @@ const LanguageCards = ({ languageGroups }) => {
                 <img
                     src={repo.owner.avatar_url}
                     alt={`${repo.owner.login} logo`}
-                    className="org-icon"
+                    className="org-icon-card"
                     width="16"
                     height="16"
                 />
@@ -107,14 +120,15 @@ const LanguageCards = ({ languageGroups }) => {
                                             key={repo.id}
                                             className="repo-item"
                                         >
-                                            <a
-                                                href={repo.html_url}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
+                                            <button
+                                                onClick={() =>
+                                                    handleRepositoryClick(repo)
+                                                }
                                                 className="repo-link"
+                                                type="button"
                                             >
                                                 {repo.name}
-                                            </a>
+                                            </button>
                                             <div className="repo-stats">
                                                 {getOrgIcon(repo)}
                                                 {repo.stargazers_count > 0 && (
@@ -141,6 +155,12 @@ const LanguageCards = ({ languageGroups }) => {
                         ))}
                 </div>
             </div>
+
+            <RepositoryModal
+                repository={selectedRepository}
+                isOpen={isModalOpen}
+                onClose={closeModal}
+            />
         </section>
     );
 };

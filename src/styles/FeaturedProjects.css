@@ -1,6 +1,34 @@
 .featured-projects {
     padding: 4rem 2rem;
-    background: var(--bg-primary);
+}
+
+.project-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    flex: 1;
+}
+
+.project-title-button {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    text-align: left;
+    font-family: inherit;
+    transition: color 0.3s ease;
+    width: 100%;
+}
+
+.project-title-button:hover {
+    color: var(--accent-color);
+}
+
+.featured-projects {
+    background: var(--bg-secondary);
     transition: background-color 0.3s ease;
 }
 

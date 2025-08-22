@@ -19,7 +19,8 @@ jobs:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
 
-        # env:
+        env:
+            REACT_APP_GITHUB_TOKEN: ${{ secrets.REACT_APP_GITHUB_TOKEN }}
         #     REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
         #     REACT_APP_API_ENDPOINT: ${{ secrets.REACT_APP_API_ENDPOINT }}
         #     REACT_APP_DISCORD_CLIENT_ID: ${{ secrets.REACT_APP_DISCORD_CLIENT_ID }}
@@ -37,8 +38,10 @@ jobs:
                   node-version: "20.x"
                   cache: "npm"
 
-            # - name: Create .env file
-            #   run: |
+            - name: Create .env file
+              run: |
+                  echo "REACT_APP_GITHUB_TOKEN=${{ secrets.REACT_APP_GITHUB_TOKEN }}" >> .env
+
             #       echo "REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}" >> .env
             #       echo "REACT_APP_API_ENDPOINT=${{ secrets.REACT_APP_API_ENDPOINT }}" >> .env
             #       echo "REACT_APP_DISCORD_CLIENT_ID=${{ secrets.REACT_APP_DISCORD_CLIENT_ID }}" >> .env

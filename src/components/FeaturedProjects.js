@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from "react";
 import GitHubService from "./GitHubService";
+import RepositoryModal from "./RepositoryModal";
 import "../styles/FeaturedProjects.css";
 
 const FeaturedProjects = () => {
     const [featuredRepos, setFeaturedRepos] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [selectedRepository, setSelectedRepository] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleRepositoryClick = (repository) => {
+        setSelectedRepository(repository);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedRepository(null);
+    };
 
     useEffect(() => {
         const loadFeaturedProjects = async () => {
@@ -71,13 +84,15 @@ const FeaturedProjects = () => {
                         <div key={repo.id} className="project-card">
                             <div className="project-header">
                                 <h3 className="project-title">
-                                    <a
-                                        href={repo.html_url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                    <button
+                                        onClick={() =>
+                                            handleRepositoryClick(repo)
+                                        }
+                                        className="project-title-button"
+                                        type="button"
                                     >
                                         {repo.name}
-                                    </a>
+                                    </button>
                                 </h3>
                                 {repo.language && (
                                     <span
@@ -150,6 +165,12 @@ const FeaturedProjects = () => {
                     </a>
                 </div>
             </div>
+
+            <RepositoryModal
+                repository={selectedRepository}
+                isOpen={isModalOpen}
+                onClose={closeModal}
+            />
         </section>
     );
 };
