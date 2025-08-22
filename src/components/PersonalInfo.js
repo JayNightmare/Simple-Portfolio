@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/PersonalInfo.css";
 
 const PersonalInfo = ({ userData }) => {
+    const [orgData, setOrgData] = useState(null);
+
     const socialLinks = [
         {
             name: "LinkedIn",
@@ -22,6 +24,42 @@ const PersonalInfo = ({ userData }) => {
             color: "#5865F2",
         },
     ];
+
+    useEffect(() => {
+        if (userData && userData.organizations_url) {
+            fetch(userData.organizations_url)
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data && data.length > 0) {
+                        setOrgData(data); // Set all organizations
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching organization data:", error);
+                });
+        }
+    }, [userData]);
+
+    const orgProfilePictures =
+        orgData && orgData.length > 0
+            ? orgData.map((org, index) => (
+                  <a
+                      className="org-button"
+                      key={index}
+                      href={`https://github.com/${org.login}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                  >
+                      <img
+                          src={org.avatar_url}
+                          alt={`${org.login} logo`}
+                          className="org-icon"
+                          width="32"
+                          height="32"
+                      />
+                  </a>
+              ))
+            : null;
 
     const userProfilePicture = (
         <img
@@ -61,6 +99,14 @@ const PersonalInfo = ({ userData }) => {
                                         Following
                                     </span>
                                 </div>
+                                <div className="orgsInfo">
+                                    <p className="orgsInfoTitle">
+                                        Organisations:
+                                    </p>
+                                    <div className="org-icon-container">
+                                        {orgProfilePictures}
+                                    </div>
+                                </div>
                                 {userData.location && (
                                     <p className="location">
                                         📍 {userData.location}
@@ -70,7 +116,6 @@ const PersonalInfo = ({ userData }) => {
                         )}
                     </div>
                 </div>
-
                 <div className="social-links">
                     <h3>Connect with me</h3>
                     <div className="social-cards">

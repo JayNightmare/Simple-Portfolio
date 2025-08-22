@@ -61,6 +61,22 @@ const LanguageCards = ({ languageGroups }) => {
         );
     }
 
+    // * Organization Icons
+    const getOrgIcon = (repo) => {
+        if (repo.owner && repo.owner.type === "Organization") {
+            return (
+                <img
+                    src={repo.owner.avatar_url}
+                    alt={`${repo.owner.login} logo`}
+                    className="org-icon"
+                    width="16"
+                    height="16"
+                />
+            );
+        }
+        return null;
+    };
+
     return (
         <section id="technologies" className="language-cards">
             <div className="container">
@@ -100,6 +116,7 @@ const LanguageCards = ({ languageGroups }) => {
                                                 {repo.name}
                                             </a>
                                             <div className="repo-stats">
+                                                {getOrgIcon(repo)}
                                                 {repo.stargazers_count > 0 && (
                                                     <span className="stars">
                                                         ⭐{" "}
