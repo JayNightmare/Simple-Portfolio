@@ -23,16 +23,20 @@ const PersonalInfo = ({ userData }) => {
         },
     ];
 
+    const userProfilePicture = (
+        <img
+            src="https://avatars.githubusercontent.com/u/34739807?v=4"
+            alt="Jay's Profile"
+            className="profile-image"
+        />
+    );
+
     return (
         <section id="about" className="personal-info">
             <div className="personal-info-container">
                 <div className="profile-section">
                     <div className="profile-image-container">
-                        <img
-                            src="/placeholder-profile.jpg"
-                            alt="Jay's Profile"
-                            className="profile-image"
-                        />
+                        {userProfilePicture}
                     </div>
                     <div className="profile-details">
                         <h1>Jay</h1>

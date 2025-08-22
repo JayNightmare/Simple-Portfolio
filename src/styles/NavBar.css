@@ -201,6 +201,8 @@ body {
     .nav-menu-theme-toggle {
         display: flex;
         justify-content: center;
+        align-items: center;
+        width: 60px;
     }
 
     .nav-link {

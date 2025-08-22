@@ -34,7 +34,8 @@
 
 .toggle-slider {
     position: absolute;
-    top: 2px;
+    top: 50%;
+    transform: translate(-11%, -50%);
     left: 2px;
     width: 22px;
     height: 22px;
@@ -48,7 +49,7 @@
 }
 
 :root.dark-theme .toggle-slider {
-    transform: translateX(26px);
+    transform: translate(121%, -50%);
 }
 
 .toggle-icon {
@@ -94,17 +95,18 @@
 /* Mobile responsiveness */
 @media (max-width: 768px) {
     .dark-mode-toggle {
-        width: 50px;
+        width: 60px;
         height: 25px;
     }
 
     .toggle-slider {
-        width: 19px;
-        height: 19px;
+        width: 22px;
+        height: 22px;
+        transform: translate(0%, -50%);
     }
 
     :root.dark-theme .toggle-slider {
-        transform: translateX(21px);
+        transform: translate(110%, -50%);
     }
 
     .toggle-icon {
