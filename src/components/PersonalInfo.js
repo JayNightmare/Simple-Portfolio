@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../styles/PersonalInfo.css";
+import discordIcon from "../assets/svg/discord-svgrepo-com.svg";
+import linkedInIcon from "../assets/svg/linkedin-svgrepo-com.svg";
+import githubIcon from "../assets/svg/github-142-svgrepo-com.svg";
 
 const PersonalInfo = ({ userData }) => {
     const [orgData, setOrgData] = useState(null);
@@ -8,19 +11,19 @@ const PersonalInfo = ({ userData }) => {
         {
             name: "LinkedIn",
             url: "https://linkedin.com/in/jordan-s-bell",
-            icon: "💼",
+            icon: linkedInIcon,
             color: "#0077B5",
         },
         {
             name: "GitHub",
             url: "https://github.com/JayNightmare",
-            icon: "💻",
-            color: "#333",
+            icon: githubIcon,
+            color: "#999999ff",
         },
         {
             name: "Discord",
             url: "https://discord.com/users/373097473553727488",
-            icon: "🎮",
+            icon: discordIcon,
             color: "#5865F2",
         },
     ];
@@ -128,7 +131,16 @@ const PersonalInfo = ({ userData }) => {
                                 className="social-card"
                                 style={{ borderColor: link.color }}
                             >
-                                <span className="social-icon">{link.icon}</span>
+                                <img
+                                    className="social-icon"
+                                    src={link.icon}
+                                    alt={link.name}
+                                    width={32}
+                                    height={32}
+                                    style={{
+                                        filter: "brightness(0) invert(1)",
+                                    }}
+                                />
                                 <span className="social-name">{link.name}</span>
                             </a>
                         ))}

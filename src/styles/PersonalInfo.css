@@ -142,8 +142,9 @@
 }
 
 .social-icon {
-    font-size: 2rem;
     margin-bottom: 0.5rem;
+    width: 24px;
+    height: 24px;
 }
 
 .social-name {
