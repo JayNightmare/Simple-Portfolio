@@ -1,10 +1,10 @@
-# Jay's Portfolio Website
+# Simple Portfolio Website
 
-A modern, responsive portfolio website built with React that showcases my GitHub projects and personal work. The site automatically fetches and caches data from GitHub APIs to display my repositories, technologies, and development activity.
+A modern, responsive portfolio website built with React that showcases GitHub projects and personal work. The site automatically fetches and caches data from GitHub APIs to display repositories, technologies, and development activity.
 
 ## 🌟 Features
 
-- **Automatic GitHub Integration**: Fetches repositories from personal GitHub account and organizations (Nexus-Scripture, Augmented-Perception)
+- **Automatic GitHub Integration**: Fetches repositories from personal GitHub account and organizations
 - **Smart Caching**: 30-minute cache system to optimize API calls and improve performance
 - **Language Grouping**: Projects automatically grouped by programming language with visual cards
 - **Featured Projects**: Highlights top repositories based on stars and activity
@@ -32,8 +32,8 @@ A modern, responsive portfolio website built with React that showcases my GitHub
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/JayNightmare/portfolio-website.git
-cd portfolio-website
+git clone https://github.com/JayNightmare/Simple-Portfolio.git
+cd Simple-Portfolio
 ```
 
 2. Install dependencies:
@@ -100,7 +100,7 @@ npm run deploy
 ```
 
 ### Custom Domain
-This project is configured for the custom domain `portfolio.endpoint-system.uk`. To use your own:
+This project is configured for the github-pages domain. If you want to use your own custom domain:
 
 1. Update the `homepage` field in `package.json`
 2. Modify the `CNAME` file in the `public` folder
@@ -114,10 +114,6 @@ The portfolio automatically fetches:
 - Repositories from specified organizations
 - Repository statistics (stars, forks, languages)
 - Recent activity and update dates
-
-### Organizations Included:
-- **Nexus-Scripture** - Scripture and religious text projects
-- **Augmented-Perception** - AR/VR and perception-related projects
 
 ## 🎨 Design Features
 
@@ -156,27 +152,11 @@ The application implements a smart caching system:
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 🔗 Links
-
-- **Live Site**: [portfolio.endpoint-system.uk](https://portfolio.endpoint-system.uk)
-- **GitHub**: [JayNightmare](https://github.com/JayNightmare)
-- **LinkedIn**: [jordan-s-bell](https://linkedin.com/in/jordan-s-bell)
-
-## 🛠️ Future Enhancements
-
-- [ ] Add blog section with markdown support
-- [ ] Implement dark/light theme toggle
-- [ ] Add project filtering and search
-- [ ] Include contribution graph visualization
-- [ ] Add contact form with email integration
-- [ ] Implement lazy loading for images
-- [ ] Add analytics and visitor tracking
-
 ---
 
 Built with ❤️ by Jay using React and modern web technologies.
 
-## Available Scripts (Create React App)
+## Available Scripts
 
 ### `npm start`
 Runs the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
