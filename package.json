@@ -2,7 +2,7 @@
   "name": "portfolio-website",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://portfolio.nexusgit.info",
+  "homepage": "jaynightmare.github.io/Simple-Portfolio/",
   "dependencies": {
     "axios": "^1.11.0",
     "highlight.js": "^11.11.1",
