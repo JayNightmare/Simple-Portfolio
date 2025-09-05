@@ -99,12 +99,12 @@ npm install --save-dev gh-pages
 npm run deploy
 ```
 
-### Custom Domain
-This project is configured for the github-pages domain. If you want to use your own custom domain:
-
-1. Update the `homepage` field in `package.json`
-2. Modify the `CNAME` file in the `public` folder
-3. Configure your DNS settings to point to GitHub Pages
+### Change Domain
+This project is configured for the github-pages domain. To change to your GitHub page url:
+1. Go to the Search tab (Easier to go to VSCode)
+2. Search for all instances of "jaynightmare"
+3. Replace with your GitHub name
+[Steps]()
 
 ## 📊 GitHub API Integration
 
