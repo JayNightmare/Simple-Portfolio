@@ -104,7 +104,8 @@ This project is configured for the github-pages domain. To change to your GitHub
 1. Go to the Search tab (Easier to go to VSCode)
 2. Search for all instances of "jaynightmare"
 3. Replace with your GitHub name
-[Steps]()
+
+![Steps](https://github.com/JayNightmare/Simple-Portfolio/blob/88c35c5a1db928d471125c2fcf7380db4ca9ae03/src/assets/steps.jpg)
 
 ## 📊 GitHub API Integration
 
