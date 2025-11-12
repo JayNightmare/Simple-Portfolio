@@ -1,4 +1,5 @@
 # Simple Portfolio Website
+-# discontinued
 
 A modern, responsive portfolio website built with React that showcases GitHub projects and personal work. The site automatically fetches and caches data from GitHub APIs to display repositories, technologies, and development activity.
 
